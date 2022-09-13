@@ -70,8 +70,6 @@ model Order{
   total_price       Int?              @default(0)
   country_code_id   String
   user_id           Int
-  createdAt         Int               
-  updatedAt         DateTime?         @updatedAt
   CountryCode       CountryCode       @relation(fields: [country_code_id], references: [country_code])
   User              User              @relation(fields: [user_id], references: [id])
 }

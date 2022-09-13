@@ -7,6 +7,7 @@ import { setupSwagger } from './commons/utils';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
 
   const configService = app.get(ConfigService);
   const PORT = configService.get('SERVER_PORT');
@@ -26,8 +27,10 @@ async function bootstrap() {
   await app.listen(PORT);
 
   if (configService.get('NODE_ENV') === 'development') {
-    Logger.log(`Application running on port ${PORT}, http://localhost:${PORT}`);
-    Logger.log(`Go to API Docs : http://localhost:${PORT}/swagger`);
+    Logger.log(
+      `Application running on port ${PORT}, http://localhost:${PORT}/api`,
+    );
+    Logger.log(`Go to API Docs : http://localhost:${PORT}/api/swagger`);
   }
 }
 bootstrap();
