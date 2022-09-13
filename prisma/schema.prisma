@@ -18,13 +18,13 @@ model CountryCode{
   country_code     String             @unique @db.VarChar(3) 
   country_dcode    Int
   country_name     String
-  deliveryCost     deliveryCost[]
+  DeliveryCost     DeliveryCost[]
   Order            Order[]
 
   @@id([id, country_code])
 }
 
-model deliveryCost{
+model DeliveryCost{
   id               Int                @id @default(autoincrement())
   cost             Int
   quantity         Int
@@ -68,6 +68,8 @@ model Order{
   quantity          Int
   original_price    Int
   total_price       Int?              @default(0)
+  createdat         Int
+  updatedat         DateTime?         @default(now()) @db.Date
   country_code_id   String
   user_id           Int
   CountryCode       CountryCode       @relation(fields: [country_code_id], references: [country_code])
@@ -76,7 +78,7 @@ model Order{
 
 enum OrderType{
   COMPLETE
-  CANCEAL
+  CANCEL
 }
 
 model Delivery{

@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Logger, Param } from '@nestjs/common';
+import { Controller, Get, HttpCode, Param } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Order } from '@prisma/client';
 import { OrdersService } from './orders.service';
@@ -6,7 +6,6 @@ import { OrdersService } from './orders.service';
 @ApiTags('Orders API')
 @Controller('orders')
 export class OrdersController {
-  private readonly logger = new Logger(`OrdersController`);
   constructor(private readonly ordersService: OrdersService) {}
 
   @HttpCode(200)
