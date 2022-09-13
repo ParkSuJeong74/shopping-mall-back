@@ -1,5 +1,11 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, HttpCode, Param, Post, Put } from '@nestjs/common';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { DeliveriesService } from './deliveries.service';
 import { StartDeliveryDto } from './dto';
 
@@ -23,5 +29,18 @@ export class DeliveriesController {
     return await this.deliveriesService.startDelivery(startDeliveryDto);
   }
 
-  // 배송 상태 업데이트
+  @HttpCode(204)
+  @Put('complete/:id')
+  @ApiOperation({
+    summary: '제품 배송 완료 API',
+    description: '제품 배송 완료로 처리한다.',
+  })
+  @ApiResponse({
+    status: 204,
+    description: '제품 배송 완료 성공',
+  })
+  @ApiParam({ name: 'id', required: true, description: '배송 아이디' })
+  async updateState(@Param('id') id: number) {
+    return await this.deliveriesService.updateState(id);
+  }
 }
