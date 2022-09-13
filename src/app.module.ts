@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { validation } from './commons/utils';
 import { OrdersModule } from './orders/orders.module';
+import { CouponsModule } from './coupons/coupons.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import { OrdersModule } from './orders/orders.module';
       validationSchema: validation,
     }),
     OrdersModule,
+    CouponsModule,
+    PrismaModule,
   ],
 })
 export class AppModule {}
