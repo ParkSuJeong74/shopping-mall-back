@@ -4,6 +4,7 @@ import { validation } from './commons/utils';
 import { OrdersModule } from './orders/orders.module';
 import { CouponsModule } from './coupons/coupons.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { DeliveriesModule } from './deliveries/deliveries.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { PrismaModule } from './prisma/prisma.module';
     OrdersModule,
     CouponsModule,
     PrismaModule,
+    DeliveriesModule,
   ],
 })
 export class AppModule {}
