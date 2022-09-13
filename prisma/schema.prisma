@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id               Int                @id @default(autoincrement())
+  name             String
+  Order            Order[]
+}
+
+model CountryCode{
+  id               Int                @unique @default(autoincrement())
+  country_code     String             @unique @db.VarChar(3) 
+  country_dcode    Int
+  country_name     String
+  deliveryCost     deliveryCost[]
+  Order            Order[]
+
+  @@id([id, country_code])
+}
+
+model deliveryCost{
+  id               Int                @id @default(autoincrement())
+  cost             Int
+  quantity         Int
+  country_id       String
+  CountryCode      CountryCode        @relation(fields: [country_id], references: [country_code])
+}
+
+model CouponType{
+  id                Int                @id @default(autoincrement())
+  coupon_type_name  String
+  type              DiscountType
+  price_type        PriceType
+  discount_value    Int
+  Coupon            Coupon[]
+}
+
+enum PriceType{
+  PRODUCT
+  DELIVERY
+}
+
+enum DiscountType{
+  FLAT
+  PERCENT
+}
+
+model Coupon{
+  id                Int                @id @default(autoincrement())
+  coupon_code       String             @unique @db.VarChar(15)
+  discount          Int
+  is_used           Boolean            @default(false)
+  createdAt         DateTime?          @default(now()) @db.Date
+  endAt             DateTime?          @db.Date
+  coupon_type_id    Int
+  CouponType        CouponType         @relation(fields: [coupon_type_id], references: [id])
+}
+
+model Order{
+  id                Int               @id @default(autoincrement())
+  pay_state         OrderType         @default(COMPLETE)
+  quantity          Int
+  original_price    Int
+  total_price       Int?              @default(0)
+  country_code_id   String
+  user_id           Int
+  createdAt         Int               
+  updatedAt         DateTime?         @updatedAt
+  CountryCode       CountryCode       @relation(fields: [country_code_id], references: [country_code])
+  User              User              @relation(fields: [user_id], references: [id])
+}
+
+enum OrderType{
+  COMPLETE
+  CANCEAL
+}
+
+model Delivery{
+  id                Int                @id @default(autoincrement())
+  state             DeliveryState      @default(CONTINUE)
+}
+
+enum DeliveryState{
+  CONTINUE
+  COMPLETE
+}
