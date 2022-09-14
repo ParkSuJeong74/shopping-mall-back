@@ -14,3 +14,11 @@ export class MakeCouponTypeDto {
   @IsNumber()
   discount_value: number;
 }
+
+export class MakeCouponDto {
+  @IsString()
+  endAt: string;
+
+  @IsNumber()
+  coupon_type_id: number;
+}

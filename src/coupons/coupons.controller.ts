@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CouponsService } from './coupons.service';
-import { MakeCouponTypeDto } from './dto';
+import { MakeCouponDto, MakeCouponTypeDto } from './dto';
 
 @ApiTags('Coupons API')
 @Controller('coupons')
@@ -24,11 +24,18 @@ export class CouponsController {
   }
 
   @Post()
-  async makeNewCoupons() {}
+  async makeNewCoupons(@Body() makeCouponDto: MakeCouponDto) {
+    return await this.couponsService.makeCoupons(makeCouponDto);
+  }
+
+  @Post('apply')
+  async applyCoupons() {
+    return await this.couponsService.applyCoupons(); // order에 쿠폰 적용
+  }
 
   @Get()
   async showCoupons() {} // 사용 내역
 
   @Get('type')
-  async showCouponsType() {}
+  async showCouponsType() {} // 총 할인액
 }

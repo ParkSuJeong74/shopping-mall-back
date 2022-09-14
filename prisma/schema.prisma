@@ -54,10 +54,10 @@ enum DiscountType{
 model Coupon{
   id                Int                @id @default(autoincrement())
   coupon_code       String             @unique @db.VarChar(15)
-  discount          Int
+  discount          Int                @default(0)
   is_used           Boolean            @default(false)
   createdAt         DateTime?          @default(now()) @db.Date
-  endAt             DateTime?          @db.Date
+  endAt             String             @db.VarChar(15)
   coupon_type_id    Int
   CouponType        CouponType         @relation(fields: [coupon_type_id], references: [id])
 }
