@@ -5,64 +5,53 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-## Description
+# 쇼핑몰 서비스 프로젝트 📋
 
-매번 초기세팅하기 힘들어서 만드는 nestjs boilerplate.
+> 배포 도메인: 준비 중입니다.
 
-- cors 설정
-- config, joi 설정 (validation)
-- prettier 설정
-- 예외 필터 설정
-- Logger middleware 설정
-- Jest 설정
-- Dockerfile (기본)
-- swagger 설정
+## 1. 프로젝트 소개
 
-!! .env gitignore에 추가해야함 !!
+### 1-1) 요구사항 분석
 
-orm은 바뀔 수 있으니 설정하지 않음
+### 1-2) 개발 과정
 
-## Installation
+### 1-3) 관련 문서
 
-```bash
+- API Docs (swagger)
+
+👉
+
+- ERD
+
+## 2. 사용된 기술스택
+
+| 파트   | 기술                                                   |
+| ------ | ------------------------------------------------------ |
+| **BE** | Nest.js, Postgres, Prisma, GCP Compute Engine, swagger |
+
+## 3. 서비스 실행 방법
+
+레포지토리를 clone 받아야합니다!
+
+```shell
+$ git clone
+$ cd
+```
+
+@ParkSuJeong 에게 `*.env`를 요청해주세요!
+
+```shell
 $ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## 버전
 
-```bash
-# unit tests
-$ npm run test
+- version 1.0.0
 
-# e2e tests
-$ npm run test:e2e
+## FAQ
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- 자주 받는 질문 정리
 
 ## License
 
