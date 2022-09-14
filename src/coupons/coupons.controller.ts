@@ -1,15 +1,17 @@
-import { Controller, Get, Logger, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CouponsService } from './coupons.service';
+import { MakeCouponTypeDto } from './dto';
 
 @ApiTags('Coupons API')
 @Controller('coupons')
 export class CouponsController {
-  private readonly logger = new Logger(`CouponsController`);
   constructor(private readonly couponsService: CouponsService) {}
 
-  @Post()
-  async makeCouponsType() {}
+  @Post('type')
+  async makeCouponsType(@Body() makeCouponTypeDto: MakeCouponTypeDto) {
+    return await this.couponsService.makeCouponsType(makeCouponTypeDto);
+  }
 
   @Post()
   async makeNewCoupons() {}
@@ -17,6 +19,6 @@ export class CouponsController {
   @Get()
   async showCoupons() {} // 사용 내역
 
-  @Get()
+  @Get('type')
   async showCouponsType() {}
 }

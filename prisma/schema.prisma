@@ -34,7 +34,7 @@ model DeliveryCost{
 
 model CouponType{
   id                Int                @id @default(autoincrement())
-  coupon_type_name  String
+  coupon_type_name  String             @db.VarChar(50) 
   type              DiscountType
   price_type        PriceType
   discount_value    Int
