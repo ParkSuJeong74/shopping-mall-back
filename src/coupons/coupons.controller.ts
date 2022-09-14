@@ -23,7 +23,17 @@ export class CouponsController {
     return await this.couponsService.makeCouponsType(makeCouponTypeDto);
   }
 
+  @HttpCode(201)
   @Post()
+  @ApiOperation({
+    summary: '쿠폰 생성 API',
+    description: '쿠폰을 생성한다.',
+  })
+  @ApiResponse({
+    status: 201,
+    description: '쿠폰 생성 성공',
+  })
+  @ApiBody({ type: MakeCouponDto })
   async makeNewCoupons(@Body() makeCouponDto: MakeCouponDto) {
     return await this.couponsService.makeCoupons(makeCouponDto);
   }
